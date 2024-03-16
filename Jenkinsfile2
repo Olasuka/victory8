@@ -1,0 +1,33 @@
+pipeline {
+    agent {label 'Jenkins-Agent'} 
+    tools {
+      jdk 'Java17'
+      maven 'Maven3'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'building'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'deploying the app'
+            }
+        }
+        stage("checkout from SCM") {
+          steps{ 
+            git branch: 'main', credentialsId: 'github', url: 'https://github.com/Olasuka/victory8'
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing'
+            }
+        }
+        stage('Release') {
+            steps {
+                echo 'Releasing the app'
+            }
+        }
+    }
+}
