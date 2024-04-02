@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'building'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'deploying the app'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing'
+            }
+        }
+        stage('Release') {
+            steps {
+                echo 'Releasing the app'
+            }
+        }
+        stage("SonarQube Analysis"){
+            steps {
+	        script {
+		     withSonarQubeEnv(credentialsId: 'sonar-jenkins-token') { 
+                     sh "mvn sonar:sonar"
+		     }
+	        }	
+           }
+       }
+    }
+}
