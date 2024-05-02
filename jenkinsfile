@@ -4,12 +4,24 @@ pipeline {
         jdk 'Java17'
         maven 'maven3'
     }
-    stages {
+    stages{
+        stages("cleanup workspace"){
+                 steps{
+                 cleanWs()
+                 }
+        }
+        stage("checkout from scm"){
+               steps (
+                   git branch: 'main', credentialId: 'github',url: 'https://github.com/Olasuka/victory8'
+                }
+        }
+        stages {
         stage('Build') {
             steps {
                 echo 'building'
             }
         }
+
         stage('Deploy') {
             steps {
                 echo 'deploying the app'
