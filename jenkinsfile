@@ -11,7 +11,7 @@ pipeline {
                  }
         }
         stage("checkout from scm"){
-               steps (
+               steps {
                    git branch: 'main', credentialId: 'github',url: 'https://github.com/Olasuka/victory8'
                 }
         }
