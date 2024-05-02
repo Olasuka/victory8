@@ -10,15 +10,15 @@ pipeline {
                  cleanWs()
                  }
         }
-        stage("checkout from scm"){
-               steps {
+        stage{"checkout from scm"}{
+                steps {
                    git branch: 'main', credentialId: 'github',url: 'https://github.com/Olasuka/victory8'
                 }
         }
         stages {
-        stage('Build') {
-            steps {
-                echo 'building'
+            stage('Build') {
+                  steps {
+                     echo 'building'
             }
         }
 
