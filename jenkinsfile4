@@ -24,7 +24,7 @@ pipeline {
            steps {
 	           script {
 		        withSonarQubeEnv(installationName: 'sonarqube-server') { 
-                        sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin Version 3.23:sonar'
+                        sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.23:sonar'
 		          }
 	           }	
              }
