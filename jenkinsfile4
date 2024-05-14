@@ -23,11 +23,11 @@ pipeline {
         stage("SonarQube Analysis"){
            steps {
 	           script {
-		        withSonarQubeEnv(installationName: 'sonarqube-server') { 
-                        sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.23:sonar'
-		          }
-	           }	
-             }
-        }
+		        withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') { 
+                        sh "mvn sonar:sonar"
+		        }
+	         }	
+           }
+       }
     }
 }
